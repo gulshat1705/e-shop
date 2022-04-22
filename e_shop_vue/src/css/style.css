@@ -1,0 +1,69 @@
+*, body{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    color: #000;
+}
+a{
+    text-decoration: none;
+}
+.container{
+    max-width: 1260px;
+    margin: 0 auto;
+}
+/*
+#35495e
+#42b883
+light 300 italic
+Regular 400
+Black 900 italic
+*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,400;1,300;1,900&display=swap');
+header{
+    padding: 10px 0;
+    background: #35495e;
+}
+.navbar{
+    display: flex;
+}
+.navbar-logo{
+    width: 130px;
+}
+.logo{    
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 2.0rem;
+    font-family: 'Lato', sans-serif;
+    color: #fff;
+    text-decoration: none;
+}
+.logo span{
+    font-size: 32px;
+    font-weight: 900;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 4px;
+    padding-left: 15px;
+    color: #42b883;
+}
+.menu{
+    margin: 20px 20px 0 2.0rem;
+}
+.navbar-menu, .navbar-menu a{
+    color: #fff;
+}
+.menu a{
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 18px;   
+    padding: 10px 20px;
+    border: 1px solid #35495e;
+}
+.menu a:hover{
+    color: #42b883;
+}
+.menu a:active{
+    color: #42b883;
+    border: 1px solid #42b883;
+}
