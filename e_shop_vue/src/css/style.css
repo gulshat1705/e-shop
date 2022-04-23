@@ -8,6 +8,10 @@
 a{
     text-decoration: none;
 }
+select, select > option{
+    background: transparent;
+    border: none;
+}
 .container{
     max-width: 1260px;
     margin: 0 auto;
@@ -27,6 +31,8 @@ header{
 }
 .navbar{
     display: flex;
+    position: relative;
+    overflow: hidden;
 }
 .navbar-logo{
     width: 130px;
@@ -57,7 +63,7 @@ header{
     display: inline-block;
     text-transform: capitalize;
     font-size: 18px;   
-    padding: 10px 20px;
+    padding: 10px 25px;
     border: 1px solid #35495e;
 }
 .menu a:hover{
@@ -66,4 +72,7 @@ header{
 .menu a:active{
     color: #42b883;
     border: 1px solid #42b883;
+}
+.navbar-items{
+    margin: 15px 1% 0 3%;
 }
