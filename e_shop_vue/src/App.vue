@@ -2,6 +2,7 @@
   <Navbar />
 
   <section class="container">
+    Content
     <router-view/>
   </section>  
 

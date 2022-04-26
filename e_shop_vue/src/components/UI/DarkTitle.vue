@@ -1,22 +1,20 @@
 <template>
-  <button class="green-btn">
+  <h2 class="dark-title">
       <slot></slot>
-  </button>
+  </h2>
 </template>
 
 <script>
 export default {
-    name: 'green-btn'
+    name: 'dark-title'
 }
 </script>
 <style scoped>
-.green-btn{
+.dark-title{
+  text-transform: uppercase;
   font-family: 'Helvetica', sans-serif;
   color: #35495e;
-  background: #42b883;
   padding: 7px;
-  text-align: center;
-  border: #fff;
-  border-radius: 5px;
-}  
+  font-size: 26px;
+} 
 </style>

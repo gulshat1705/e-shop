@@ -25,14 +25,9 @@ Black 900 italic
 */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,400;1,300;1,900&display=swap');
-header{
-    padding: 10px 0;
+header,
+footer{
     background: #35495e;
-}
-.navbar{
-    display: flex;
-    position: relative;
-    overflow: hidden;
 }
 .navbar-logo{
     width: 130px;
@@ -42,7 +37,6 @@ header{
     font-size: 36px;
     line-height: 2.0rem;
     font-family: 'Lato', sans-serif;
-    color: #fff;
     text-decoration: none;
 }
 .logo span{
@@ -53,26 +47,45 @@ header{
     padding-left: 15px;
     color: #42b883;
 }
-.menu{
-    margin: 20px 20px 0 2.0rem;
-}
-.navbar-menu, .navbar-menu a{
-    color: #fff;
-}
+
 .menu a{
-    display: inline-block;
     text-transform: capitalize;
     font-size: 18px;   
-    padding: 10px 25px;
     border: 1px solid #35495e;
-}
-.menu a:hover{
-    color: #42b883;
 }
 .menu a:active{
     color: #42b883;
     border: 1px solid #42b883;
 }
-.navbar-items{
-    margin: 15px 1% 0 3%;
+
+/*footer*/
+footer{
+    width: 100%;
+    margin-top: 5px;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+}
+.footer-wrap{
+    padding: 10px 0;
+    display: flex;    
+}
+.footer-item{
+    padding: 10px;
+    margin: 0 10px;
+}
+.footer-item a,
+.footer-item p{
+    display: block;
+    padding: 5px;
+    font-size: 18px;
+    color: #fff;
+
+}
+.footer-item.contacts,
+.footer-item.payment{
+    width: 30%;
+}
+.footer-item.mailing{
+    width: 40%;
 }

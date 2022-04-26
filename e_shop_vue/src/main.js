@@ -6,6 +6,7 @@ import store from './store'
 import './css/reset.css'
 import './css/style.css'
 import axios from 'axios'
+import './assets/tailwind.css'
 
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
