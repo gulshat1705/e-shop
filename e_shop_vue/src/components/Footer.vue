@@ -1,5 +1,5 @@
 <template>
-    <footer>
+    <footer class="bg-dark">
         <div class="footer-wrap container">
             
             <div class="footer-item contacts">

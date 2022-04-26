@@ -16,7 +16,7 @@ export default {
   font-family: 'Helvetica', sans-serif;
   color: #35495e;
   background: #fff;
-  padding: 7px 25px;
+  padding: 7px 13px;
   text-align: center;
   border: 1px solid #42b883;
   border-radius: 5px;

@@ -1,58 +1,41 @@
 <template>
     <header class="bg-dark">        
         <!--desktop menu-->
-        <nav>
-            <div class="max-w-7xl mx-auto">
-                <div class="flex justify-between">
-                    <!--menu-->
-                    <div class="flex space-x-4">
-                        <!--logo-->
-                        <div class="navbar-logo flex items-center space-x-2 py-3 px-2">
-                            <router-link to="/" class="logo text-white">
-                                e-Kids <span>shop</span>
-                            </router-link>     
-                        </div>
+        <nav  class="header-wrap max-w-7xl mx-auto flex justify-between sm:px-5">
+            <div class="navbar-logo flex items-center space-x-2 py-3 px-2">
+                <Logo />
+            </div>
+            <div class="block lg:hidden flex items-center">
+                <button @click="toggle" class="flex items-center px-3 py-2 border rounded text-white border-white hover:text-green hover:border-green">
+                    <svg class="fill-white h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </button>
+            </div>
                         <!--menu -->
-                        <div class="menu items-center space-x-1" v-bind:class="{'hidden': !showMenu, 'flex': showMenu}">
-                            <div class="flex flex-col lg:flex-row list-none ml-auto">    
-                                <router-link to="/" class="py-5 px-5 text-white hover:text-green">home</router-link>
-                                <router-link to="/clothes" class="py-3 px-3 text-white hover:text-green">baby clothes</router-link>                        
-                                <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green">child nutrition</router-link>                        
-                                <router-link to="/diapers" class="py-5 px-3 text-white hover:text-green">diapers</router-link>                        
-                                <router-link to="/toys" class="py-5 px-3 text-white hover:text-green">toys</router-link>
-                            </div>        
-                        </div>
-                    </div>
-                    <!--login-->
-                    <div class="hidden md:flex items-center space-x-1">
-                        <light-btn to="/log-in">log in</light-btn>
-                      <!--  <light-btn to="/account">account</light-btn>-->
-                    </div>                    
-                    <div class="hidden md:flex items-center space-x-1">
-                        <light-btn to="/register">register</light-btn>
-                    </div>
-                    <div class="hidden md:flex items-center space-x-1">
-                        <light-btn class="green" to="cart">
-                            <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-                            <span>Cart</span>
-                        </light-btn>
-                    </div> 
-                    <div class="hidden md:flex items-center space-x-1">
-                        <select class="text-white">
-                            <option>Рус</option>
-                            <option>Eng</option>
-                        </select>
-                    </div> 
-                    <!--btn show mobile menu-->
-                    <div class="flex md:hidden items-center" v-on:click="toggleNavbar()">
-                        <button class="py-5 px-7">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-15" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg>
-                        </button>
+            <div :class="open ? 'block': 'hidden'" class="menu items-center space-x-1 w-full flex-grow lg:flex" >
+                <div class="md:flex-grow">    
+                    <router-link to="/" class="py-5 px-5 text-white hover:text-green">Home</router-link>
+                    <router-link to="/clothes" class="py-5 px-3 text-white hover:text-green">Baby Clothes</router-link>                        
+                    <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green">Child Nutrition</router-link>                        
+                    <router-link to="/diapers" class="py-5 px-3 text-white hover:text-green">Diapers</router-link>                        
+                    <router-link to="/toys" class="py-5 px-3 text-white hover:text-green">Toys</router-link>
+                </div> 
+                            
+                <div class="left-items flex space-x-4">
+                    <light-btn to="/log-in">log in</light-btn>
+                <!--  <light-btn to="/account">account</light-btn>-->
+                                        
+                    <light-btn to="/register">register</light-btn>
+                                        
+                    <light-btn class="green" to="cart">
+                        <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+                        <span>Cart</span>
+                    </light-btn>
                         
-                    </div>
-                </div>
+                    <select class="text-white">
+                        <option>Рус</option>
+                        <option>Eng</option>
+                    </select>                         
+                </div>                   
             </div>
                     <!-- mobile menu-->     
         </nav>
@@ -65,68 +48,32 @@ import axios from 'axios'
 
 import GreenBtn from './UI/GreenBtn.vue'
 import LightBtn from './UI/LightBtn.vue'
+import Logo from './UI/Logo.vue'
 
 export default {
-  components: { GreenBtn, LightBtn },
+  components: { GreenBtn, LightBtn, Logo },
     data() {
         return {
-            showMenu: false,
+            open: false,
 
         }
     },
     methods: {
-        toggleNavbar: function(){
-        this.showMenu = !this.showMenu;
+        toggle() {
+        this.open = !this.open;
         }
   }
 }
 </script>
 
 <style scoped>
-/*BURGER menu*/
-.burger{
-    cursor: pointer;
-    display: none;
+.header-wrap{
+    position: relative;
+}
+.left-items{
     position: absolute;
     right: 0;
 }
-.burger-menu, .burger-menu__item{
-    display: block;
-}
-.burger-menu{
-  border: 1px solid #42b883;
-  border-radius: 3px;
-  background: #fff;
-  height: 45px;
-  width: 62px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
-}
-.burger-menu__item{
-    height: 3px;
-    width: 100%;
-    background: #42b883;
-    transition: transform 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95),
-    opacity 300ms linear;
-}
-.burger--is-open .burger__item.burger__item--first{
-        transform: translate(0, 20px) rotate(40deg);
-}    
-.burger--is-open .burger__item--second{
-        opacity: 0;
-}    
-.burger--is-open .burger__item.burger__item--third{
-        transform: translate(0, -20px) rotate(-40deg);
-}
-
-@media (max-width: 991px) {
-    .burger{
-        display: block;
-    }    
-}
-/*end BURGER menu*/
 .green{
     background: #42b883;
     color: #fff;

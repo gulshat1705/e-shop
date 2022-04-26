@@ -5,6 +5,7 @@
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
     color: #000;
 }
+
 a{
     text-decoration: none;
 }
@@ -25,10 +26,6 @@ Black 900 italic
 */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,400;1,300;1,900&display=swap');
-header,
-footer{
-    background: #35495e;
-}
 .navbar-logo{
     width: 130px;
 }
@@ -49,13 +46,10 @@ footer{
 }
 
 .menu a{
-    text-transform: capitalize;
     font-size: 18px;   
-    border: 1px solid #35495e;
 }
 .menu a:active{
     color: #42b883;
-    border: 1px solid #42b883;
 }
 
 /*footer*/
