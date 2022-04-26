@@ -7,6 +7,19 @@
   <div class="py-5 mx-auto w-full">
     <h2 class="text-2xl text-center text-dark font-bold">Latest products</h2>
   </div>
+
+
+  <div class="py-5 mx-auto w-full">
+    <h2 class="text-2xl text-center text-dark font-bold">Promotion</h2>
+  </div>  
+
+  <div class="py-5 mx-auto w-full">
+    <h2 class="text-2xl text-center text-dark font-bold">Top Seller</h2>
+  </div> 
+
+  <div class="py-5 mx-auto w-full">
+    <h2 class="text-2xl text-center text-dark font-bold">Sale</h2>
+  </div>      
 </template>
 
 <script>
