@@ -1,6 +1,6 @@
 from distutils.command.upload import upload
 from email.mime import image
-from msilib.schema import File
+from django.core.files import File
 from django.db import models
 from io import BytesIO
 from unicodedata import category, name         # because I'm going to handle images here and resizing
@@ -28,7 +28,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)                
     name = models.CharField(max_length=255)
     slug = models.SlugField()
-    desciption = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)

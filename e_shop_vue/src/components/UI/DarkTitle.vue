@@ -11,7 +11,8 @@ export default {
 </script>
 <style scoped>
 .dark-title{
-  text-transform: uppercase;
+  text-align: center;
+  text-transform: capitalize;
   font-family: 'Helvetica', sans-serif;
   color: #35495e;
   padding: 7px;

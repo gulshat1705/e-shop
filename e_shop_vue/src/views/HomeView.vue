@@ -6,6 +6,13 @@
 
   <div class="py-5 mx-auto w-full">
     <h2 class="text-2xl text-center text-dark font-bold">Latest products</h2>
+    <div class="flex items-center space-x-2 my-2">
+      <ProductBox
+        v-for="product in latestProducts"
+        v-bind:key="product.id"
+        v-bind:product="product"
+      />
+    </div>  
   </div>
 
 
@@ -25,11 +32,39 @@
 <script>
 // @ is an alias to /src
 import Logo from '@/components/UI/Logo'
+import ProductBox from '@/components/ProductBox.vue'
+import axios from 'axios'
 
 export default {
-  name: 'HomeView',
-  components: { Logo
-    
+  name: 'home',
+  components: { 
+    Logo,
+    ProductBox,    
+  },
+  data() {
+    return {
+      latestProducts: []
+    }
+  },
+  mounted() {
+    this.getLatestProducts()
+    document.title = 'Home | Child Shop'
+  },
+  methods: {
+    async getLatestProducts() {
+      this.$store.commit('setIsLoading', true)
+
+      await axios
+        .get('api/v1/latest-products/')
+        .then(response => {
+          this.latestProducts = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+        this.$store.commit('setIsLoading', false)
+    }
   }
 }
 </script>

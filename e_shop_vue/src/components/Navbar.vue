@@ -5,15 +5,18 @@
             <div class="navbar-logo flex items-center space-x-2 py-3 px-2">
                 <Logo />
             </div>
-            <div class="block lg:hidden flex items-center">
-                <button @click="toggle" class="flex items-center px-3 py-2 border rounded text-white border-white hover:text-green hover:border-green">
-                    <svg class="fill-white h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+            <div class="block lg:hidden flex items-center">                
+                <button @click="toggle" class="flex items-center px-3 py-2">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-10" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
                 </button>
             </div>
-                        <!--menu -->
+                                    <!--menu -->
             <div :class="open ? 'block': 'hidden'" class="menu items-center space-x-1 w-full flex-grow lg:flex" >
                 <div class="md:flex-grow">    
                     <router-link to="/" class="py-5 px-5 text-white hover:text-green">Home</router-link>
+                    <router-link to="/all-products" class="py-5 px-5 text-white hover:text-green">All Products</router-link>
                     <router-link to="/clothes" class="py-5 px-3 text-white hover:text-green">Baby Clothes</router-link>                        
                     <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green">Child Nutrition</router-link>                        
                     <router-link to="/diapers" class="py-5 px-3 text-white hover:text-green">Diapers</router-link>                        

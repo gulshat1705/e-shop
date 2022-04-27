@@ -12,11 +12,11 @@ export default {
 <style scoped>
 .green-btn{
   font-family: 'Helvetica', sans-serif;
-  color: #35495e;
+  text-transform: capitalize;
+  color: #fff;
   background: #42b883;
-  padding: 7px;
+  padding: 9px 7px;
   text-align: center;
   border: #fff;
-  border-radius: 5px;
 }  
 </style>

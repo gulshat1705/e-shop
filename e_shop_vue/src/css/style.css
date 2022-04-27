@@ -53,13 +53,7 @@ Black 900 italic
 }
 
 /*footer*/
-footer{
-    width: 100%;
-    margin-top: 5px;
-    padding: 0;
-    position: absolute;
-    bottom: 0;
-}
+
 .footer-wrap{
     padding: 10px 0;
     display: flex;    
