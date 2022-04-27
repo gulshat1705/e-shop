@@ -5,7 +5,7 @@
   </div>
 
   <div class="py-5 mx-auto w-full">
-    <h2 class="text-2xl text-center text-dark font-bold">Latest products</h2>
+    <dark-title>Latest products</dark-title>
     <div class="flex items-center space-x-2 my-2">
       <ProductBox
         v-for="product in latestProducts"
@@ -32,6 +32,7 @@
 <script>
 // @ is an alias to /src
 import Logo from '@/components/UI/Logo'
+import DarkTitle from '@/components/UI/DarkTitle'
 import ProductBox from '@/components/ProductBox.vue'
 import axios from 'axios'
 
@@ -39,6 +40,7 @@ export default {
   name: 'home',
   components: { 
     Logo,
+    DarkTitle,
     ProductBox,    
   },
   data() {
@@ -48,7 +50,7 @@ export default {
   },
   mounted() {
     this.getLatestProducts()
-    document.title = 'Home | Child Shop'
+    document.title = 'Home | e-Kids Shop'
   },
   methods: {
     async getLatestProducts() {
@@ -63,7 +65,7 @@ export default {
           console.log(error)
         })
 
-        this.$store.commit('setIsLoading', false)
+      this.$store.commit('setIsLoading', false)
     }
   }
 }

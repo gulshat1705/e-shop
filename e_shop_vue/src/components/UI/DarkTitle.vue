@@ -14,6 +14,7 @@ export default {
   text-align: center;
   text-transform: capitalize;
   font-family: 'Helvetica', sans-serif;
+  font-weight: 600;
   color: #35495e;
   padding: 7px;
   font-size: 26px;

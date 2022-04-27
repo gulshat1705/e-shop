@@ -7,7 +7,6 @@ from rest_framework.decorators import api_view
 
 from .models import Category, Product
 from .serializers import ProductSerializer, CategorySerializer
-from product import serializers
 
 
 class LatestProductList(APIView):
@@ -18,6 +17,12 @@ class LatestProductList(APIView):
         return Response(serializer.data)                # return result
 
 
+class AllProductList(APIView):
+    def get(self, request, format=None):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+
+        return Response(serializer.data)
 
 
 class ProductDetail(APIView):
@@ -55,7 +60,7 @@ def search(request):
     query = request.data.get('query', '')
 
     if query:
-        products = Product.objects.filter(Q(name__icontains=query) | Q(description_icontains=query))
+        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
         serializer = ProductSerializer(products, many=True)
 
         return Response(serializer.data)

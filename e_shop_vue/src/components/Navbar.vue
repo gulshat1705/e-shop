@@ -17,8 +17,8 @@
                 <div class="md:flex-grow">    
                     <router-link to="/" class="py-5 px-5 text-white hover:text-green">Home</router-link>
                     <router-link to="/all-products" class="py-5 px-5 text-white hover:text-green">All Products</router-link>
-                    <router-link to="/clothes" class="py-5 px-3 text-white hover:text-green">Baby Clothes</router-link>                        
-                    <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green">Child Nutrition</router-link>                        
+                    <router-link to="/clothes" class="py-5 px-3 text-white hover:text-green">Clothes</router-link>                        
+                    <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green">Nutrition</router-link>                        
                     <router-link to="/diapers" class="py-5 px-3 text-white hover:text-green">Diapers</router-link>                        
                     <router-link to="/toys" class="py-5 px-3 text-white hover:text-green">Toys</router-link>
                 </div> 
