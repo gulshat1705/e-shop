@@ -1,5 +1,3 @@
-from dataclasses import fields
-from pyexpat import model
 from rest_framework import serializers
 
 from .models import Category, Product
@@ -20,6 +18,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    products = ProductSerializer(many=True)     # !!!!!!!!
     class Meta:
         model = Category
         fields = (

@@ -24,15 +24,24 @@
                 </div> 
                             
                 <div class="left-items flex space-x-4">
-                    <light-btn to="/log-in">log in</light-btn>
-                <!--  <light-btn to="/account">account</light-btn>-->
-                                        
-                    <light-btn to="/register">register</light-btn>
-                                        
-                    <light-btn class="green" to="cart">
-                        <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-                        <span>Cart</span>
-                    </light-btn>
+                    
+                    <div class="py-5 px-10">
+                        <i class="fa-solid fa-phone text-2xl text-white"><span class="text-green text-lg pl-3">0771 67 67 51</span></i>
+                    </div>
+                    <router-link to="/log-in">
+                        <i class="fa-solid fa-user-large py-5 text-2xl text-white hover:text-green"></i>
+                    </router-link>
+                  <!--  
+                    <router-link to="/account">
+                        <i class="fa-solid fa-user-check py-5 text-2xl text-white hover:text-green"></i>
+                    </router-link>
+                    -->
+                    
+                
+                                       
+                    <router-link to="/cart">
+                        <i class="fa-solid fa-cart-shopping py-5 text-2xl text-white hover:text-green"></i>
+                    </router-link>
                         
                     <select class="text-white">
                         <option>Рус</option>

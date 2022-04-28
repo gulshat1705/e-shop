@@ -6,7 +6,7 @@
 
   <div class="py-5 mx-auto w-full">
     <dark-title>Latest products</dark-title>
-    <div class="flex items-center space-x-2 my-2">
+    <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
       <ProductBox
         v-for="product in latestProducts"
         v-bind:key="product.id"
