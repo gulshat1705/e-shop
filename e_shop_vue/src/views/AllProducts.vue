@@ -1,7 +1,7 @@
 <template>
   <div class="py-5">
     <dark-title>All Products</dark-title>
-    <div class="flex items-center space-x-2 my-2">
+    <div class="flex items-center flex-wrap grid-cols-4 space-x-3 my-2">
       <ProductBox
         v-for="product in allProducts"
         v-bind:key="product.id"

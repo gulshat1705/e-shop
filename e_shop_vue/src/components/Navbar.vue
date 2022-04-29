@@ -35,12 +35,12 @@
                     <router-link to="/account">
                         <i class="fa-solid fa-user-check py-5 text-2xl text-white hover:text-green"></i>
                     </router-link>
-                    -->
-                    
-                
+                    -->               
                                        
                     <router-link to="/cart">
-                        <i class="fa-solid fa-cart-shopping py-5 text-2xl text-white hover:text-green"></i>
+                        <i class="fa-solid fa-cart-shopping py-5 text-2xl text-white hover:text-green">
+                            {{ cartTotalLength }}
+                        </i>                        
                     </router-link>
                         
                     <select class="text-white">
@@ -67,14 +67,29 @@ export default {
     data() {
         return {
             open: false,
-
+            cart: {
+                items: []
+            }
         }
     },
     methods: {
         toggle() {
         this.open = !this.open;
         }
-  }
+    },
+    mounted() {
+        this.cart = this.$store.state.cart
+    },
+    computed: {
+        cartTotalLength() {
+            let totalLength = 0
+
+            for (let i = 0; i < this.cart.items.length; i++) {
+                totalLength += this.cart.items[i].quantity
+            }
+            return totalLength
+        }
+    }
 }
 </script>
 
@@ -85,16 +100,5 @@ export default {
 .left-items{
     position: absolute;
     right: 0;
-}
-.green{
-    background: #42b883;
-    color: #fff;
-}
-.icon{
-    margin-left: -5px;
-    margin-right: 10px;
-}
-.fas.fa-shopping-cart{
-    color: #fff;
 }
 </style>
