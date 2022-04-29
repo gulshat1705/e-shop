@@ -22,7 +22,7 @@
 import DarkBtn from '@/components/UI/DarkBtn'
 
 export default {
-    name: 'cartItem',
+    name: 'CartItem',
     components: { DarkBtn },
     props: {
         initialItem: Object
@@ -44,7 +44,7 @@ export default {
             }
             this.updateCart()
         },
-        incrementQuantity(item) {
+        increamentQuantity(item) {
             item.quantity += 1
 
             this.updateCart()
@@ -53,7 +53,7 @@ export default {
             localStorage.setItem('cart', JSON.stringify(this.$store.state.cart))
         },
         removeFromCart(item) {
-            this.$$emit('removeFromCart', item)
+            this.$emit('removeFromCart', item)
 
             this.updateCart()
         }

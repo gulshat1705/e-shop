@@ -15,7 +15,7 @@ export default {
   text-transform: capitalize;
   color: #fff;
   background: #42b883;
-  padding: 10px 7px;
+  padding: 10px 30px;
   text-align: center;
   border: #fff;
 }  

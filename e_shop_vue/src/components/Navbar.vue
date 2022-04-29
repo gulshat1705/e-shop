@@ -28,18 +28,21 @@
                     <div class="py-5 px-10">
                         <i class="fa-solid fa-phone text-2xl text-white"><span class="text-green text-lg pl-3">0771 67 67 51</span></i>
                     </div>
-                    <router-link to="/log-in">
-                        <i class="fa-solid fa-user-large py-5 text-2xl text-white hover:text-green"></i>
-                    </router-link>
-                  <!--  
-                    <router-link to="/account">
-                        <i class="fa-solid fa-user-check py-5 text-2xl text-white hover:text-green"></i>
-                    </router-link>
-                    -->               
+                    <template v-if="$store.state.isAuthenticated">
+                        <router-link to="/my-account">
+                            <i class="fa-solid fa-user-check py-5 text-2xl text-white hover:text-green"></i>
+                        </router-link>                        
+                    </template>
+
+                    <template v-else>
+                         <router-link to="/log-in">
+                            <i class="fa-solid fa-user-large py-5 text-2xl text-white hover:text-green"></i>
+                        </router-link>
+                    </template>         
                                        
                     <router-link to="/cart">
-                        <i class="fa-solid fa-cart-shopping py-5 text-2xl text-white hover:text-green">
-                            {{ cartTotalLength }}
+                        <i class="fa-solid fa-cart-shopping relative py-5 text-2xl text-white hover:text-green">
+                            <span class="absolute top-3 text-sm text-green hover:text-white">{{ cartTotalLength }}</span>
                         </i>                        
                     </router-link>
                         
@@ -72,6 +75,17 @@ export default {
             }
         }
     },
+    beforeCreated() {
+        this.$store.commit('initializeStore')
+
+        const token = this.$store.state.token
+
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = 'Token ' + token
+        } else {
+            axios.defaults.headers.common['Authorization'] = ''
+        }
+    },    
     methods: {
         toggle() {
         this.open = !this.open;
