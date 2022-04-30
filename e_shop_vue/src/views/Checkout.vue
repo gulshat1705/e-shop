@@ -126,7 +126,7 @@ export default {
         this.cart = this.$store.state.cart
 
         if (this.cartTotalLength > 0) {
-            this.stripe = Stripe('sk_test_51KqxPuGkcoqpICjCjjXcuKkUnW3iAOutwjpwdYIz1QqcMHiZb57FtS9PTczj0No42B7lQiRrMII4uL8R9zQdOoiq00cmCWxg92')
+            this.stripe = Stripe('pk_test_51KqxPuGkcoqpICjCzTOPB6nFsmNyp6PVbgpSF3GgstKEkrpC24Jm9U4S4pqRnl35FqcPf9Sf8FYXxAF8p3jEMClU00EBf33nOf')
             const elements = this.stripe.elements();
             this.card = elements.create('card', { hidePostalCode: true })
 

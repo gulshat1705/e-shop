@@ -11,7 +11,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import Order, OrderItem
-from .serializers import OrderSerializer
+from .serializers import OrderSerializer, MyOrderSerializer
+from e_shop_django.order import serializers
 
 @api_view(['POST'])
 @authentication_classes([authentication.TokenAuthentication])
@@ -38,4 +39,15 @@ def checkout(request):
         except Exception:
             return Response(serializer.errors, status=status.HTTP_201_CREATED)  
 
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)         
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+
+
+class OrdersList(APIView):
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        orders = Order.objects.filter(user=request.user)
+        serializer = MyOrderSerializer(orders, many=True)
+
+        return Response(serializer.data)

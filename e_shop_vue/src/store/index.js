@@ -42,12 +42,6 @@ export default createStore({
     setIsLoading(state, status) {
       state.isLoading = status
     },
-
-    clearCart(state) {
-      state.cart = { items: []}
-      localStorage.setItem('cart', JSON.stringify(state.cart))  // после заполнения номер карт и тд очистились
-    },
-
     setToken(state, token) {
       state.token = token
       state.isAuthenticated = true
@@ -55,7 +49,11 @@ export default createStore({
     removeToken(state) {
       state.token = ''
       state.isAuthenticated = false
-    }
+    },
+    clearCart(state) {
+      state.cart = { items: []}
+      localStorage.setItem('cart', JSON.stringify(state.cart))  // после заполнения номер карт и тд очистились
+    },
   },
   actions: {
   },
