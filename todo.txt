@@ -61,4 +61,11 @@
         - Create postgress database
         - Create users and virtual environment
         - Install packages and get project files
-        - Create separate settingsfile for production                                               
+        - Create separate settingsfile for production      
+
+
+
+STRIPE:
+        - add STRIPE_SECRET_KEY = '' to settings
+        - python manage.py startap order
+        -  views => import strip ...

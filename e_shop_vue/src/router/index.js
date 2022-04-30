@@ -9,6 +9,7 @@ import Cart from '@/views/Cart'
 import Checkout from '@/views/Checkout'
 import LogIn from '@/views/LogIn'
 import MyAccount from '@/views/MyAccount'
+import Success from '@/views/Success'
 import store from '@/store'
  
 const routes = [
@@ -50,7 +51,19 @@ const routes = [
     name: 'cart',
     component: Cart
   },
-
+  {
+  path: '/cart/checkout',
+  name: 'checkout',
+  component: Checkout,
+  meta: {
+    requireLogin: true
+    }
+  },
+  {
+    path: '/cart/success',
+    name: 'success',
+    component: Success
+  },
   {
     path: '/:category_slug/:product_slug',
     name: 'product',
@@ -60,12 +73,6 @@ const routes = [
     path: '/:category_slug',
     name: 'category',
     component: Category
-  },
-  {
-    path: '/cart/checkout',
-    name: 'checkout',
-    component: Checkout,
-
   },
 ]
 

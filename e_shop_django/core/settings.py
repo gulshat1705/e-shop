@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STRIPE_SECRET_KEY = 'sk_test_51KqxPuGkcoqpICjCjjXcuKkUnW3iAOutwjpwdYIz1QqcMHiZb57FtS9PTczj0No42B7lQiRrMII4uL8R9zQdOoiq00cmCWxg92'
+
 
 # Application definition
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'djoser',
 
     'product',
+    'order',
 
 ]
 
