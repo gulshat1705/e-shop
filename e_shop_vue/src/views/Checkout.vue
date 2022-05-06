@@ -73,6 +73,11 @@
             <div class="">
                 <label>Place *</label>
                 <input type="text" class="" v-model="place">
+            </div>
+
+            <div>
+                <label>Comments</label>
+                <input type="text" class="" v-model="comments" >
             </div>                                                                  
         </div>
 
@@ -117,6 +122,7 @@ export default {
             address: '',
             zipcode: '',
             place: '',
+            comments: '',
             errors: []
         }
     },
@@ -204,6 +210,7 @@ export default {
                 'address': this.address,
                 'zipcode': this.zipcode,
                 'place': this.place,
+                'comments': this.comments,
                 'phone': this.phone,
                 'items': items,
                 'stripe_token': token.id        // get from the backend

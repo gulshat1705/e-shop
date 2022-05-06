@@ -31,13 +31,12 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    date_added = models.DateTimeField(auto_now_add=True)
-    
+    thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)        
     stock = models.IntegerField(blank=True, null=True)
     status = models.BooleanField(default=True)
-
     sale = models.IntegerField('Discount in percent', blank=True, default=0)
+    draft = models.BooleanField(default=False)
+    date_added = models.DateTimeField(auto_now_add=True)
 
 
     class Meta:

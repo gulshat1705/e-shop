@@ -12,6 +12,7 @@ class Order(models.Model):
     address = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=100)
     place = models.CharField(max_length=100)
+    comments = models.CharField(max_length=500, null=True, blank=True)
     phone = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     paid_amount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)

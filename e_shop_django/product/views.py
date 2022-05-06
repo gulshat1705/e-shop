@@ -6,9 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .models import Category, Product
-from .serializers import ProductSerializer, CategorySerializer, SaleProductSerializer
-
-from rest_framework.generics import GenericAPIView
+from .serializers import ProductSerializer, CategorySerializer
 
 
 class LatestProductList(APIView):
@@ -18,27 +16,12 @@ class LatestProductList(APIView):
 
         return Response(serializer.data)                # return result
 
-
-from rest_framework import generics
-from django.db.models import F, Func
 class SaleList(APIView):
     def get(self, request, format=None):
-       # queryset = Product.objects.all()
         products = Product.objects.exclude(sale__isnull=True).exclude(sale__exact=0)
         serializer = ProductSerializer(products, many=True)
 
         return Response(serializer.data)
-
-
-       # sale = self.request.query_params.get('get_sale_price') or None
-     #   if sale is not None:
-       #     queryset = queryset.filter(product__get_sale_price=sale)
-        #    return queryset
-      #  return queryset.filter(product__get_sale_price=sale) 
-
-  
-
-#    Stats.objects.exclude(stats__isnull=True).exclude(stats__exact='')
 
 
 class AllProductList(APIView):
