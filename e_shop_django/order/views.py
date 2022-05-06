@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from .models import Order, OrderItem
 from .serializers import OrderSerializer, MyOrderSerializer
-from e_shop_django.order import serializers
+
 
 @api_view(['POST'])
 @authentication_classes([authentication.TokenAuthentication])

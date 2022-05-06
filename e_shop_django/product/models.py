@@ -33,6 +33,11 @@ class Product(models.Model):
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
+    
+    stock = models.IntegerField(blank=True, null=True)
+    status = models.BooleanField(default=True)
+
+    sale = models.IntegerField('Discount in percent', blank=True, default=0)
 
 
     class Meta:
@@ -77,3 +82,19 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail   
+    @property
+    def get_sale_price(self):
+        '''Calculate the discounted price'''
+        if self.sale > 0:
+            sale_price = round(float(self.price - (self.price * self.sale) / 100), 2)
+
+            return sale_price
+
+
+    #@property
+    #def get_sale_price(self):
+     #   '''Calculate the discounted price'''
+      #  return "%.2f" %(float(self.price) * 0.8)        
+
+
+    

@@ -36,6 +36,7 @@
 
 <script>
 import DarkTitle from '@/components/UI/DarkTitle'
+import GreenTitle from '@/components/UI/GreenTitle'
 import DarkBtn from '@/components/UI/DarkBtn'
 import CartItem from '@/components/CartItem'
 import axios from 'axios'
@@ -44,6 +45,7 @@ export default {
     name: 'cart',
     components: {
         DarkTitle,
+        GreenTitle,
         DarkBtn,
         CartItem
     },

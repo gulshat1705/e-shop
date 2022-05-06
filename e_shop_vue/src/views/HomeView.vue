@@ -1,6 +1,7 @@
 <template>
   <div class="py-5 mx-auto w-full">
-    <h1 class="text-2xl text-center">Welcom to <span class="text-dark">e-Kids</span><i class="text-green font-bold"> SHOP</i>, online shop with delivery
+    <h1 class="text-2xl text-center">Welcom to
+       <span class="text-dark underline decoration-green">e-Kids<i class="text-green font-bold"> SHOP</i></span>, online shop with delivery
     </h1>
   </div>
 
