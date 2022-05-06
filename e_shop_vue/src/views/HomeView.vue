@@ -16,18 +16,25 @@
     </div>  
   </div>
 
-
   <div class="py-5 mx-auto w-full">
-    <h2 class="text-2xl text-center text-dark font-bold">Promotion</h2>
+    <dark-title>Promotions, Sale</dark-title>
+    <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
+      <ProductBox 
+        v-for="product in salesProducts"
+        v-bind:key="product.id"
+        v-bind:product="product"      
+      />
+
+    </div>
   </div>  
 
   <div class="py-5 mx-auto w-full">
-    <h2 class="text-2xl text-center text-dark font-bold">Top Seller</h2>
-  </div> 
+    <dark-title>Top Seller, Best-seller</dark-title>
+    <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
 
-  <div class="py-5 mx-auto w-full">
-    <h2 class="text-2xl text-center text-dark font-bold">Sale</h2>
-  </div>      
+    </div>    
+  </div> 
+ 
 </template>
 
 <script>
@@ -46,11 +53,14 @@ export default {
   },
   data() {
     return {
-      latestProducts: []
+      latestProducts: [],
+      salesProducts: []
     }
   },
   mounted() {
-    this.getLatestProducts()
+    this.getLatestProducts(),
+    this.getSalesProducts()
+
     document.title = 'Home | e-Kids Shop'
   },
   methods: {
@@ -67,7 +77,22 @@ export default {
         })
 
       this.$store.commit('setIsLoading', false)
-    }
+    },
+
+    async getSalesProducts() {
+      this.$store.commit('setIsLoading', true)
+
+      await axios
+        .get('api/v1/sale-products/')
+        .then(response => {
+          this.salesProducts = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      
+      this.$store.commit('setIsLoading', false)
+    } 
   }
 }
 </script>

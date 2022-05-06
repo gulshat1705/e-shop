@@ -13,6 +13,9 @@ class ProductSerializer(serializers.ModelSerializer):
             'get_absolute_url',
             'description',
             'price',
+            'stock',
+            'status',
+            'sale',
             'get_image',
             'get_thumbnail',
             'get_sale_price'            
