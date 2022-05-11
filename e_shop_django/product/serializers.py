@@ -17,7 +17,9 @@ class ProductSerializer(serializers.ModelSerializer):
             'sale',
             'get_image',
             'get_thumbnail',
-            'get_sale_price'            
+            'get_sale_price', 
+            'view_count',
+            'sold_count'         
         )
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -5,6 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from rest_framework import viewsets
+
 from .models import Category, Product
 from .serializers import ProductSerializer, CategorySerializer
 
@@ -42,6 +44,8 @@ class ProductDetail(APIView):
 
     def get(self, request, category_slug, product_slug, format=None):
         product = self.get_object(category_slug, product_slug)
+        product.view_count += 1
+        product.save()
         serializer = ProductSerializer(product)
 
         return Response(serializer.data)     
@@ -73,7 +77,6 @@ def search(request):
         return Response(serializer.data)
     else:
         return Response({'products': []})
-
 
 
   

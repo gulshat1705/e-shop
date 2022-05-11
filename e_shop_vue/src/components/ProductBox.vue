@@ -6,6 +6,8 @@
 
         <h3>{{ product.name }}</h3>
         <p class="text-gray">{{ product.price }} som</p>
+        <p class="text-gray">{{ product.view_count }} views</p>
+        
 
         <router-link v-bind:to="product.get_absolute_url"><green-btn class="w-full absolute left-0 bottom-0">View details</green-btn></router-link>
     </div>     
@@ -20,6 +22,8 @@ export default {
     props: {
         product: Object
     }
-
+   
 }
+
+
 </script>

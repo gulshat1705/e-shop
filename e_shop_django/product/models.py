@@ -36,6 +36,8 @@ class Product(models.Model):
     status = models.BooleanField(default=True)
     sale = models.IntegerField('Discount in percent', blank=True, default=0)
     draft = models.BooleanField(default=False)
+    sold_count = models.IntegerField(default=0)
+    view_count = models.IntegerField(default=0)
     date_added = models.DateTimeField(auto_now_add=True)
 
 
@@ -87,13 +89,4 @@ class Product(models.Model):
         if self.sale > 0:
             sale_price = round(float(self.price - (self.price * self.sale) / 100), 2)
 
-            return sale_price
-
-
-    #@property
-    #def get_sale_price(self):
-     #   '''Calculate the discounted price'''
-      #  return "%.2f" %(float(self.price) * 0.8)        
-
-
-    
+            return sale_price   

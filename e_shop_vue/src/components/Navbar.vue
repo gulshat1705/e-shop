@@ -15,7 +15,7 @@
                                     <!--menu -->
             <div :class="open ? 'block': 'hidden'" class="menu items-center space-x-1 flex-grow lg:flex" >
                 <div class="md:flex-grow">    
-                    <router-link to="/" class="py-5 px-5 text-white hover:text-green">Home</router-link>
+                    <router-link to="/" class="py-5 px-5 text-white hover:text-green lg:block">Home</router-link>
                     <router-link to="/all-products" class="py-5 px-5 text-white hover:text-green ">All Products</router-link>
                     <router-link to="/clothes" class="py-5 px-3 text-white hover:text-green">Clothes</router-link>                        
                     <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green">Nutrition</router-link>                        
