@@ -7,6 +7,7 @@ module.exports = {
       current: 'currentColor',
       white: 'white',
       green: '#42b883',
+      red: '#ff2800',
       dark: '#35495e',
       gray: '#615e5e',
       lightGray: 'rgb(203 213 225)'

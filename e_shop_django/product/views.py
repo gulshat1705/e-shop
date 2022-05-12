@@ -18,6 +18,14 @@ class LatestProductList(APIView):
 
         return Response(serializer.data)                # return result
 
+
+class PopularProductList(APIView):
+    def get(self, request, format=None):
+        products = Product.objects.all().order_by('-view_count')[0:6]
+        serializer = ProductSerializer(products, many=True)
+
+        return Response(serializer.data)
+
 class SaleList(APIView):
     def get(self, request, format=None):
         products = Product.objects.exclude(sale__isnull=True).exclude(sale__exact=0)

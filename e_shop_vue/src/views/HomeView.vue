@@ -17,6 +17,17 @@
   </div>
 
   <div class="py-5 mx-auto w-full">
+    <dark-title>Popular products</dark-title>
+    <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
+      <ProductBox 
+        v-for="product in popularProducts"
+        v-bind:key="product.id"
+        v-bind:product="product"
+      />
+    </div>
+  </div>  
+
+  <div class="py-5 mx-auto w-full">
     <dark-title>Promotions, Sale</dark-title>
     <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
       <ProductBox 
@@ -26,7 +37,7 @@
       />
 
     </div>
-  </div>  
+  </div> 
 
   <div class="py-5 mx-auto w-full">
     <dark-title>Top Seller, Best-seller</dark-title>
@@ -54,12 +65,15 @@ export default {
   data() {
     return {
       latestProducts: [],
-      salesProducts: []
+      popularProducts: [],
+      salesProducts: [],      
     }
   },
   mounted() {
     this.getLatestProducts(),
-    this.getSalesProducts()
+    this.getPopularProducts(),
+    this.getSalesProducts(),
+    
 
     document.title = 'Home | e-Kids Shop'
   },
@@ -79,6 +93,21 @@ export default {
       this.$store.commit('setIsLoading', false)
     },
 
+    async getPopularProducts() {
+      this.$store.commit('setIsLoading', true)
+
+      await axios
+        .get('api/v1/popular-products/')
+        .then(response => {
+          this.popularProducts = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+      this.$store.commit('setIsLoading', false)  
+    },
+
     async getSalesProducts() {
       this.$store.commit('setIsLoading', true)
 
@@ -92,7 +121,7 @@ export default {
         })
       
       this.$store.commit('setIsLoading', false)
-    } 
+    },    
   }
 }
 </script>

@@ -1,3 +1,5 @@
+from itertools import product
+from requests import request
 import stripe
 
 from django.conf import settings
@@ -10,8 +12,10 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from product.models import Product
+
 from .models import Order, OrderItem
-from .serializers import OrderSerializer, MyOrderSerializer
+from .serializers import OrderSerializer, MyOrderSerializer, OrderItemSerializer
 
 
 @api_view(['POST'])
@@ -49,5 +53,15 @@ class OrdersList(APIView):
     def get(self, request, format=None):
         orders = Order.objects.filter(user=request.user)
         serializer = MyOrderSerializer(orders, many=True)
+
+        return Response(serializer.data)
+
+
+class SoldCount(APIView):
+
+    def get(self, request, format=None):
+     
+        orders = OrderItem.objects.all().order_by('-product__sold_count')[0:1]
+        serializer =OrderItemSerializer(orders, many=True)
 
         return Response(serializer.data)

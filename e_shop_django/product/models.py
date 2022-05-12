@@ -83,6 +83,8 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail   
+
+        
     @property
     def get_sale_price(self):
         '''Calculate the discounted price'''
