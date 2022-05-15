@@ -1,4 +1,5 @@
 from itertools import product
+from pyexpat import model
 from rest_framework import serializers
 from .models import Order, OrderItem
 from product.serializers import ProductSerializer
@@ -41,6 +42,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
             'product',
             'quantity',
         )
+
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)

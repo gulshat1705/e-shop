@@ -1,4 +1,3 @@
-from itertools import product
 import stripe
 
 from django.conf import settings
@@ -55,14 +54,26 @@ class OrdersList(APIView):
 
 
 
+class OrderItemList(APIView):
+    def get(self, request, format=None):
+        orders = OrderItem.objects.all()
+        
+        serializer = OrderItemSerializer(orders, many=True)
+
+        return Response(serializer.data)
+
+from django.db.models import Sum
+
 class Bestseller(APIView):
+    # def get_object(self):
+    #     return OrderItem.objects.values('product').annotate(quantity_sum=Sum('quantity'))
 
     def get(self, request, format=None):
-        serializer = OrderItemSerializer(data=request.data)
+        # orderitem = self.get_object()
+        # orderitem = OrderItem.objects.all()
+        # orderitem = OrderItem.objects.values('product').order_by().annotate(quantity_sum=Sum('quantity'))
+        order = OrderItem.objects.values('product').annotate(quantity_sum=Sum('quantity'))
+        serializer = OrderItemSerializer(order, many=True)
+        
 
-        if serializer.is_valid():
-            quantity = sum(item.get('quantity') + item.get('product').sold_count for item in serializer.validated_data['items'])
-
-            serializer.save(quantity=quantity)
-
-            return Response(serializer.data)
+        return Response(serializer.data) 

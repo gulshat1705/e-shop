@@ -6,8 +6,6 @@ from io import BytesIO
 from unicodedata import category, name         # because I'm going to handle images here and resizing
 from PIL import Image
 
-
-
 class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
