@@ -7,11 +7,8 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from product.models import Product
-from product.serializers import ProductSerializer
-
-from .models import Order, OrderItem
-from .serializers import OrderSerializer, MyOrderSerializer, OrderItemSerializer
+from .models import Order
+from .serializers import OrderSerializer, MyOrderSerializer
 
 
 @api_view(['POST'])
@@ -52,28 +49,3 @@ class OrdersList(APIView):
 
         return Response(serializer.data)
 
-
-
-class OrderItemList(APIView):
-    def get(self, request, format=None):
-        orders = OrderItem.objects.all()
-        
-        serializer = OrderItemSerializer(orders, many=True)
-
-        return Response(serializer.data)
-
-from django.db.models import Sum
-
-class Bestseller(APIView):
-    # def get_object(self):
-    #     return OrderItem.objects.values('product').annotate(quantity_sum=Sum('quantity'))
-
-    def get(self, request, format=None):
-        # orderitem = self.get_object()
-        # orderitem = OrderItem.objects.all()
-        # orderitem = OrderItem.objects.values('product').order_by().annotate(quantity_sum=Sum('quantity'))
-        order = OrderItem.objects.values('product').annotate(quantity_sum=Sum('quantity'))
-        serializer = OrderItemSerializer(order, many=True)
-        
-
-        return Response(serializer.data) 

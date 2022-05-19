@@ -11,7 +11,6 @@ export default {
 </script>
 <style scoped>
 .green-title{
-  text-align: center;
   text-transform: capitalize;
   font-family: 'Helvetica', sans-serif;
   color: #42b883;

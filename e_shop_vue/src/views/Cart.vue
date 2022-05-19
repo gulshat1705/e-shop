@@ -4,17 +4,17 @@
         <div>
             <table class="w-full" v-if="cartTotalLength">
                 <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
+                    <tr class="font-bold border border-solid border-lightGray">
+                        <th  class="w-1/4 py-3">Product</th>
+                        <th  class="w-1/4 py-3">Price</th>
+                        <th  class="w-1/4 py-3">Quantity</th>
+                        <th  class="w-1/4 py-3">Total</th>
                         <th></th>
                     </tr>
                 </thead>
 
-                <tbody>
-                    <CartItem 
+                <tbody class="text-center py-3">
+                    <CartItem class=" "
                         v-for="item in cart.items"
                         v-bind:key="item.product.id"
                         v-bind:initialItem="item"    
@@ -22,14 +22,16 @@
                     />
                 </tbody>
             </table>
-            <p v-else>You don't have any products in your cart ...</p>
+            <p v-else class="text-dark">You don't have any products in your cart ...</p>
         </div>
 
-        <div class="">
-            <green-title>Summary</green-title>
-            <strong>{{cartTotalPrice.toFixed(2) }}</strong>, {{ cartTotalLength }} items
+        <div class="w-full">
+            <green-title class="font-bold">Summary</green-title>
+            <div class="w-full text-center py-3 bg-green">
+                <strong  class="py-5 text-dark">{{cartTotalPrice.toFixed(2) }}</strong>, {{ cartTotalLength }} items
+            </div>
             <hr>
-            <router-link to="/cart/checkout"><dark-btn>Procceed to checkout</dark-btn></router-link>
+            <router-link class="block text-center" to="/cart/checkout"><green-btn class="my-3 text-center">Procceed to checkout</green-btn></router-link>
         </div>
     </div>
 </template>
@@ -38,6 +40,7 @@
 import DarkTitle from '@/components/UI/DarkTitle'
 import GreenTitle from '@/components/UI/GreenTitle'
 import DarkBtn from '@/components/UI/DarkBtn'
+import GreenBtn from '@/components/UI/GreenBtn'
 import CartItem from '@/components/CartItem'
 import axios from 'axios'
 
@@ -47,6 +50,7 @@ export default {
         DarkTitle,
         GreenTitle,
         DarkBtn,
+        GreenBtn,
         CartItem
     },
     data() {

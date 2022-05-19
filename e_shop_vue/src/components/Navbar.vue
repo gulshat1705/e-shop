@@ -1,11 +1,11 @@
 <template>
     <header class="bg-dark">        
         <!--desktop menu-->
-        <nav  class="header-wrap max-w-7xl mx-auto flex justify-between sm:px-5">
-            <div class="navbar-logo flex items-center space-x-2 py-3 px-2">
+        <nav  class="header-wrap max-w-7xl mx-auto flex justify-between lg:block">
+            <div class="navbar-logo flex items-center space-x-2 py-3 px-2 xl:pl-5 sm:pl-5">
                 <Logo />
             </div>
-            <div class="block lg:hidden flex items-center absolute right-10 top-5">                
+            <div class="hidden lg:block flex items-center absolute right-10 top-5">                
                 <button @click="toggle" class="flex items-center px-3 py-2">
                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-10" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
@@ -13,24 +13,25 @@
                 </button>
             </div>
                                     <!--menu -->
-            <div :class="open ? 'block': 'hidden'" class="menu items-center space-x-1 flex-grow lg:flex" >
-                <div class="md:flex-grow">    
-                    <router-link to="/" class="py-5 px-5 text-white hover:text-green lg:block">Home</router-link>
-                    <router-link to="/all-products" class="py-5 px-5 text-white hover:text-green ">All Products</router-link>
-                    <router-link to="/clothes" class="py-5 px-3 text-white hover:text-green">Clothes</router-link>                        
-                    <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green">Nutrition</router-link>                        
-                    <router-link to="/diapers" class="py-5 px-3 text-white hover:text-green">Diapers</router-link>                        
-                    <router-link to="/toys" class="py-5 px-3 text-white hover:text-green">Toys</router-link>
+            <div :class="open ? 'hidden': 'block'" class="items-center space-x-1 flex-grow lg:w-full lg:text-center lg:bg-dark500">
+                <div class="pt-8 w-1/2 lg:w-full">    
+                    <router-link to="/" class="py-5 px-5 text-white hover:text-green lg:block lg:py-1">Home</router-link>
+                    <router-link to="/all-products" class="py-5 px-5 text-white hover:text-green lg:block lg:py-1">All Products</router-link>
+                    <router-link to="/clothes" class="py-5 px-3 text-white hover:text-green lg:block lg:py-1">Clothes</router-link>                        
+                    <router-link to="/nutrition" class="py-5 px-3 text-white hover:text-green lg:block lg:py-1">Nutrition</router-link>                        
+                    <router-link to="/diapers" class="py-5 px-3 text-white hover:text-green lg:block lg:py-1">Diapers</router-link>                        
+                    <router-link to="/toys" class="py-5 px-3 text-white hover:text-green lg:block lg:py-1">Toys</router-link>
                 </div> 
                             
-                <div class="left-items flex space-x-4">
+                <div class="absolute right-0 top-2 flex space-x-4 lg:block lg:static lg:w-full">
                     
-                    <div class="py-5 px-10">
-                        <i class="fa-solid fa-phone text-2xl text-white"><span class="text-green text-lg pl-3">0771 67 67 51</span></i>
+                    <div class="py-5 px-10 lg:py-0">
+                        <i class="fa-solid fa-phone text-2xl text-white"><span class="text-green text-lg pl-3 lg:text-white lg:text-base">0771 67 67 51</span></i>
                     </div>
                     <template v-if="$store.state.isAuthenticated">
                         <router-link to="/my-account">
-                            <i class="fa-solid fa-user-check py-5 text-2xl text-white hover:text-green"></i>
+                            <i class="fa-solid fa-user-check py-5 text-2xl text-white hover:text-green"></i>              
+
                         </router-link>                        
                     </template>
 

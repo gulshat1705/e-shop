@@ -37,15 +37,7 @@
       />
 
     </div>
-  </div> 
-
-  <div class="py-5 mx-auto w-full">
-    <dark-title>Top Seller, Best-seller</dark-title>
-    <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
-
-    </div>    
-  </div> 
- 
+  </div>  
 </template>
 
 <script>

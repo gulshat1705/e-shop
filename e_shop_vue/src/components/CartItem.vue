@@ -6,14 +6,14 @@
             </router-link>
         </td>
         <td>{{ item.product.price }}</td>
-        <td>
+        <td class="space-x-2">
             {{ item.quantity }}
-            <a @click="decrementQuantity(item)">-</a>
-            <a @click="increamentQuantity(item)">+</a>
+            <a @click="decrementQuantity(item)" class="text-red text-lg cursor-pointer">-</a>
+            <a @click="increamentQuantity(item)" class="text-green text-lg cursor-pointer">+</a>
         </td>
         <td>{{ getItemTotal(item).toFixed(2) }} som</td>
         <td>
-            <dark-btn @click="removeFromCart(item)">delete</dark-btn>
+            <dark-btn class="my-3" @click="removeFromCart(item)">delete</dark-btn>
         </td>
     </tr>
 </template>

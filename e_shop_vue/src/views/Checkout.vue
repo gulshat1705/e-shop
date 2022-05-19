@@ -1,14 +1,14 @@
 <template>
     <div>
-        <green-title>checkout</green-title>
-        <div class="">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Totsl</th>
+        <green-title class="text-center">checkout</green-title>
+        <div class="w-full py-5">
+            <table class="w-full">
+                <thead class="">
+                    <tr class="font-bold border border-solid border-lightGray">
+                        <th class="w-1/4 py-3">Product</th>
+                        <th class="w-1/4 py-3">Price</th>
+                        <th class="w-1/4 py-3">Quantity</th>
+                        <th class="w-1/4 py-3">Total</th>
                     </tr>
                 </thead>
 
@@ -17,83 +17,73 @@
                      v-for="item in cart.items"
                      v-bind:key="item.product.id"                    
                     >
-                        <td>{{ item.product.name }}</td>
-                        <td>{{ item.product.price }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ getItemTotal(item).toFixed(2) }} som</td>
+                        <td class="text-center py-3">{{ item.product.name }}</td>
+                        <td class="text-center py-3">{{ item.product.price }}</td>
+                        <td class="text-center py-3">{{ item.quantity }}</td>
+                        <td class="text-center py-3">{{ getItemTotal(item).toFixed(2) }} som</td>
                     </tr>
                 </tbody>
 
                 <tfoot>
-                    <tr>
-                        <td colspan="2">Total</td>
-                        <td>{{ cartTotalLength }}</td>
-                        <td>{{ cartTotalPrice.toFixed(2) }} som</td>
+                    <tr class="border border-solid border-lightGray">
+                        <td colspan="2" class="font-bold pl-16  py-3 text-red">Total</td>
+                        <td class="font-bold text-center">{{ cartTotalLength }}</td>
+                        <td class="font-bold text-center">{{ cartTotalPrice.toFixed(2) }} som</td>
                     </tr>
                 </tfoot>
             </table>
         </div>
 
-        <div>
-            <green-title>shipping details</green-title>
-            <p class="text-gray">*All fields are required</p>
-        </div>
-
-        <div>
-            <div class="">
-                <label>First name *</label>
-                <input type="text" class="" v-model="first_name">
+        <div class="contact-box w-full flex">
+            <div class="w-3/6 h-full">
+                <img src="../../public/Express-delivery.webp" alt="e_shop">
             </div>
 
-            <div class="">
-                <label>Last name *</label>
-                <input type="text" class="" v-model="last_name">
-            </div> 
+            <div class="w-3/6 bg-dark px-10 py-2 items-center">
+                <green-title class="form-title text-center font-bold">shipping details</green-title>
+                <div class="">
+                    <div class="field flex">
+                        <label class="text-lightGray">Name *</label>
+                        <input type="text" class="" v-model="first_name">
+                    </div>
 
-            <div class="">
-                <label>E-mail *</label>
-                <input type="email" class="" v-model="email">
-            </div>  
+                    <div class="field flex">
+                        <label class="text-lightGray">E-mail *</label>
+                        <input type="email" class="" v-model="email">
+                    </div>                  
 
-            <div class="">
-                <label>Phone *</label>
-                <input type="text" class="" v-model="phone">
-            </div>  
+                    <div class="field flex">
+                        <label class="text-lightGray">Phone *</label>
+                        <input type="text" class="" v-model="phone">
+                    </div> 
+                    
+                    <div class="field flex">
+                        <label class="text-lightGray">Address *</label>
+                        <input type="text" class="" v-model="address">
+                    </div>
 
-            <div class="">
-                <label>Address *</label>
-                <input type="text" class="" v-model="address">
+                    <div class="field flex">
+                        <label class="text-lightGray">Comments</label>
+                        <input type="text" class="" v-model="comments" >
+                    </div> 
+                </div>
+
+                <div class="" v-if="errors.length">
+                    <p class="text-red" v-for="error in errors" v-bind:key="error">{{ error }}</p>
+                </div> 
+
+                <hr>
+
+                <div id="card-element"></div>
+                
+                <template v-if="cartTotalLength" class="">
+                    <hr>
+                    <green-btn class="mt-3" @click="submitForm">Pay with stripe</green-btn>
+                </template>           
+
             </div>
 
-            <div class="">
-                <label>Zip code*</label>
-                <input type="text" class="" v-model="zipcode">
-            </div> 
-
-            <div class="">
-                <label>Place *</label>
-                <input type="text" class="" v-model="place">
-            </div>
-
-            <div>
-                <label>Comments</label>
-                <input type="text" class="" v-model="comments" >
-            </div>                                                                  
-        </div>
-
-        <div class="" v-if="errors.length">
-            <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
-        </div>
-
-        <hr>
-
-        <div id="card-element"></div>
-
-        <template v-if="cartTotalLength">
-            <hr>
-
-            <green-btn @click="submitForm">Pay with stripe</green-btn>
-        </template>
+        </div>       
     </div>
 </template>
 
@@ -116,12 +106,9 @@ export default {
             stripe: {},
             card: {},
             first_name: '',
-            last_name: '',
             email: '',
             phone: '',
             address: '',
-            zipcode: '',
-            place: '',
             comments: '',
             errors: []
         }
@@ -150,10 +137,6 @@ export default {
                 this.errors.push('The first name field is missing!')
             }
 
-            if (this.last_name === '') {
-                this.errors.push('The last name field is missing!')
-            }
-
             if (this.email === '') {
                 this.errors.push('The email field is missing!')
             }
@@ -166,14 +149,6 @@ export default {
                 this.errors.push('The address field is missing!')
             }
 
-            if (this.zipcode === '') {
-                this.errors.push('The zip code field is missing!')
-            }
-
-            if (this.place === '') {
-                this.errors.push('The place field is missing!')                
-            }
-            
             if (!this.errors.length) {  // empty or no error
                 this.$store.commit('setIsLoading', true)
 
@@ -205,11 +180,8 @@ export default {
             
             const data = {
                 'first_name': this.first_name,
-                'last_name': this.last_name,
                 'email': this.email,
                 'address': this.address,
-                'zipcode': this.zipcode,
-                'place': this.place,
                 'comments': this.comments,
                 'phone': this.phone,
                 'items': items,
@@ -245,3 +217,41 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+label:after { content: ": " }
+
+.form-title{
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.form-title::after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 3px;
+    background-color: #42b883;
+}
+
+.field{
+    width: 100%;    
+}
+.field label{
+    color: #fff;
+    width: 100px;
+}
+.field input{
+    width: 80%;
+    padding: 3px 10px;
+    outline: none;
+    border: 1px solid #42b883;
+    margin-bottom: 5px;
+    transition: .3s;
+}
+
+</style>
