@@ -13,7 +13,7 @@ from .serializers import ProductSerializer, CategorySerializer
 
 class LatestProductList(APIView):
     def get(self, request, format=None):
-        products = Product.objects.all()[0:4]       # late 4 products
+        products = Product.objects.all()[0:10]       # late 4 products
         serializer = ProductSerializer(products, many=True)     # many objects
 
         return Response(serializer.data)                # return result

@@ -89,7 +89,7 @@ export default {
     },    
     methods: {
         toggle() {
-        this.open = !this.open;
+            this.open = !this.open;
         }
     },
     mounted() {
