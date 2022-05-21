@@ -27,12 +27,27 @@
   <div class="py-5 mx-auto w-full">
     <dark-title>Popular products</dark-title>
     <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
-
-        <ProductBox 
-        v-for="product in popularProducts"
-        v-bind:key="product.id"
-        v-bind:product="product"
-        />
+      <swiper
+        :slidesPerVieew="3"
+        :spaceBetween="30"
+        :slidesPerGroup="3"
+        :loop="true"
+        :loopFillGroupWithBlank="true"
+        :pagination="{
+          clickable:true,
+          }"
+        :navigation="true"
+        :modules="modules"
+        class="mySwiper"
+      >    
+        <swiper-slide>
+          <ProductBox 
+          v-for="product in popularProducts"
+          v-bind:key="product.id"
+          v-bind:product="product"
+          />
+        </swiper-slide>  
+      </swiper>  
 
     </div>
   </div>  
@@ -61,6 +76,17 @@ import axios from 'axios'
 import Carousel from '@/components/Carousel.vue'
 import Slide from '@/components/Slide.vue'
 
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+
+
+// import required modules
+import { Pagination, Navigation } from "swiper";
+
 export default {
   name: 'home',
   components: {     
@@ -68,7 +94,10 @@ export default {
     DarkTitle,
     ProductBox, 
     Carousel,
-    Slide 
+    Slide,
+    
+    Swiper,
+    SwiperSlide,
 
   },
   data() {
@@ -84,6 +113,11 @@ export default {
     this.getSalesProducts(),
 
     document.title = 'Home | e-Kids Shop'
+  },
+  setup() {
+    return {
+      modules: [Pagination, Navigation],
+    };
   },
   methods: {
     async getLatestProducts() {
