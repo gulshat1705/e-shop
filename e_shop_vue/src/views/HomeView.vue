@@ -7,60 +7,85 @@
 
   <div class="py-5 mx-auto w-full">
     <dark-title>Latest products</dark-title>   
-    <Carousel
-     :navigation="false"
-     :pagination="true"
-     :startAutoPlay="true"
-     :timeout="2000"
-     v-slot="{ currentSlide }" class="flex flex-wrap justify-between items-center space-x-2 my-2"> 
-      <Slide v-for="(product, index) in latestProducts" :key="index">        
-        <div v-show="currentSlide === index + 1" class="">
+
+    <swiper class="mySwiper flex flex-wrap justify-between items-center my-2 pb-10"
+      :slidesPerView="4"  
+      :spaceBetween="30"    
+      :slidesPerGroup="4"
+      :autoplay="{
+        delay: 2500,
+        disableOnInteraction: false
+      }"
+      :loop="true"
+      :loopFillGroupWithBlank="true"
+      :pagination="{
+        clickable:true,
+        }"
+      :navigation="true"
+      :modules="modules"   
+    > 
+      <swiper-slide v-for="product in latestProducts">          
           <ProductBox 
-            v-bind="product.id"
+            v-bind:key="product.id"
             v-bind:product="product"
-          />
-       </div> 
-      </Slide>
-    </Carousel>
+          />         
+      </swiper-slide>  
+    </swiper>  
   </div>
 
   <div class="py-5 mx-auto w-full">
     <dark-title>Popular products</dark-title>
-    <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
-      <swiper
-        :slidesPerVieew="3"
-        :spaceBetween="30"
-        :slidesPerGroup="3"
+    
+      <swiper class="mySwiper flex flex-wrap justify-between items-center space-x-2 my-2 pb-10"
+        :slidesPerView="4"  
+        :spaceBetween="30"    
+        :slidesPerGroup="4"
+        :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false
+        }"
         :loop="true"
         :loopFillGroupWithBlank="true"
         :pagination="{
           clickable:true,
           }"
         :navigation="true"
-        :modules="modules"
-        class="mySwiper"
-      >    
-        <swiper-slide>
-          <ProductBox 
-          v-for="product in popularProducts"
-          v-bind:key="product.id"
-          v-bind:product="product"
-          />
+        :modules="modules"   
+      > 
+        <swiper-slide v-for="product in popularProducts">          
+            <ProductBox 
+              v-bind:key="product.id"
+              v-bind:product="product"
+            />         
         </swiper-slide>  
       </swiper>  
 
-    </div>
+    
   </div>  
 
   <div class="py-5 mx-auto w-full">
     <dark-title>Promotions, Sale</dark-title>
     <div class="flex flex-wrap justify-between items-center space-x-2 my-2">
       
-      <ProductBox 
-        v-for="product in salesProducts"
-        v-bind:key="product.id"
-        v-bind:product="product"      
-      ></ProductBox>
+      <swiper class="mySwiper flex flex-wrap justify-between items-center my-2 pb-10"
+        :slidesPerView="4"  
+        :spaceBetween="30"    
+        :slidesPerGroup="4"
+        :loop="true"
+        :loopFillGroupWithBlank="true"
+        :pagination="{
+          clickable:true,
+          }"
+        :navigation="true"
+        :modules="modules"   
+      > 
+        <swiper-slide v-for="product in salesProducts">          
+            <ProductBox 
+              v-bind:key="product.id"
+              v-bind:product="product"
+            />         
+        </swiper-slide>  
+      </swiper>  
 
     </div>
   </div>  
@@ -85,7 +110,7 @@ import "swiper/css/navigation";
 
 
 // import required modules
-import { Pagination, Navigation } from "swiper";
+import {Autoplay, Pagination, Navigation } from "swiper";
 
 export default {
   name: 'home',
@@ -116,7 +141,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Pagination, Navigation],
+      modules: [Autoplay, Pagination, Navigation],
     };
   },
   methods: {
@@ -167,5 +192,28 @@ export default {
   }
 }
 </script>
+
+<style>
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+.swiper-button-next, .swiper-button-prev {
+  padding-left: -10px;
+  margin-left: 0;
+  width: 50px;
+  height: 50px;
+  color:  #35495e;
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+  bottom:0px;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background-color: #42b883;
+  border: 1px solid #35495e;
+
+}
+
+</style>
 
 
