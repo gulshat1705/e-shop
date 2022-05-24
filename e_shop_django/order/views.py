@@ -49,3 +49,15 @@ class OrdersList(APIView):
 
         return Response(serializer.data)
 
+
+
+class Bestseller(APIView):
+
+    def get(self, request, format=None):
+
+        quantity = sum(item.get('quantity') + item.get('product').sold_count for item in serializer.validated_data['items'])
+
+        serializer.save(quantity=quantity)
+
+        return Response(serializer.data)
+
