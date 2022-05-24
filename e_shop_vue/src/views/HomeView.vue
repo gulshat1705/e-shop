@@ -41,7 +41,7 @@
         :spaceBetween="30"    
         :slidesPerGroup="4"
         :autoplay="{
-          delay: 2500,
+          delay: 3500,
           disableOnInteraction: false
         }"
         :loop="true"
