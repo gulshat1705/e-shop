@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
-from tkinter.messagebox import NO
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'rest_framework.authtoken',
+    #'rest_framework.authtoken',
     'corsheaders',
     'djoser',
-
+    'rest_framework_simplejwt',
+    
     'users_app',
+    'profiles',
 
     'product',
     'order',
@@ -55,13 +57,14 @@ INSTALLED_APPS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
+    'http://127.0.0.1:8000'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
-    'corsheaders.middleware.CorsMiddleware',        # for security
+    'corsheaders.middleware.CorsMiddleware',        # for security порядок важен
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -160,6 +163,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
 }
 
 
@@ -179,6 +183,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'g.arkytbekova@yandex.ru'
-EMAIL_HOST_PASSWORD = "a28040107e"
+EMAIL_HOST_PASSWORD = "dnbysjcesjdyonkk"
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'g.arkytbekova@yandex.ru'

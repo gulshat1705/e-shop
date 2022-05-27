@@ -60,8 +60,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 import GreenBtn from './UI/GreenBtn.vue'
 import LightBtn from './UI/LightBtn.vue'
 import Logo from './UI/Logo.vue'
@@ -79,22 +77,44 @@ export default {
     beforeCreated() {
         this.$store.commit('initializeStore')
 
-        const token = this.$store.state.token
+        const access = this.$store.state.access
 
-        if (token) {
-            axios.defaults.headers.common['Authorization'] = 'Token ' + token
+        if (access) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + access
         } else {
             axios.defaults.headers.common['Authorization'] = ''
         }
+    },  
+    mounted() {
+        this.cart = this.$store.state.cart
+    //    setInterval(() => {
+    //        this.getAccess()
+    //    }, 5000)
     },    
     methods: {
         toggle() {
             this.open = !this.open;
-        }
+        },
+    //    getAccess(e) {
+    //        const accessData = {
+    //            refresh: this.$store.state.refresh
+    //        }
+    //        axios
+    //            .post('/api/v1/jwt/refresh/', accessData)
+    //            .then(response => {
+    //                const access = response.data.access
+
+    //                console.log(access)
+
+    //                localStorage.setItem('access', access)
+    //                this.$store.commit('setAccess', access)
+    //            })
+    //            .catch(error => {
+    //                console.log(error)
+    //            })
+    //    }
     },
-    mounted() {
-        this.cart = this.$store.state.cart
-    },
+
     computed: {
         cartTotalLength() {
             let totalLength = 0

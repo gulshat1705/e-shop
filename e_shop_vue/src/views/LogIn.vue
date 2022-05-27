@@ -54,7 +54,7 @@ export default {
         async submitForm() {
             axios.defaults.headers.common['Authorization'] = ''
 
-            localStorage.removeItem('token')
+            localStorage.removeItem('access')
 
             const formData = {
                 username: this.username,
@@ -62,15 +62,18 @@ export default {
             }
 
             await axios
-                .post('/api/v1/token/login/', formData)
+                .post('/api/v1/jwt/create/', formData)
                 .then(response => {
-                    const token = response.data.auth_token
+                    const access = response.data.access
+                    const refresh = response.data.refresh
 
-                    this.$store.commit('setToken', token)
+                    this.$store.commit('setAccess', access)
+                    this.$store.commit('setRefresh', refresh)
 
-                    axios.defaults.headers.common['Authorization'] = 'Token ' + token
+                    axios.defaults.headers.common['Authorization'] = 'Bearer ' + access
 
-                    localStorage.setItem('token', token)
+                    localStorage.setItem('access', access)
+                    localStorage.setItem('refresh', refresh) 
 
                     const toPath = this.$route.query.to || '/cart'
 

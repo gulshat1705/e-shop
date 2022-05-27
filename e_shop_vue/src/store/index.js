@@ -6,7 +6,13 @@ export default createStore({
       items: [],
     },
     isAuthenticated: false,
-    token: '',
+
+
+//    accessToken: null,
+  //  refreshToken: null,
+    access: '',
+    refresh: '',
+  //  token: '',
     isLoading: false
   },
   getters: {
@@ -19,13 +25,24 @@ export default createStore({
         localStorage.setItem('cart', JSON.stringify(state.cart))
       }
 
-      if (localStorage.getItem('token')) {
-        state.token = localStorage.getItem('token')
+      if (localStorage.getItem('access')) {
+        state.access = localStorage.getItem('access')
+        state.refresh = localStorage.getItem('refresh')
         state.isAuthenticated = true
       } else {
-        state.token = ''
+        state.access = ''
+        state.refresh = ''
         state.isAuthenticated = false
-      }      
+      }
+      
+
+    //  if (localStorage.getItem('token')) {
+    //    state.token = localStorage.getItem('token')
+    //    state.isAuthenticated = true
+    //} else {
+    //    state.token = ''
+    //    state.isAuthenticated = false
+    //  }      
     },
 
     addToCart(state, item) {
@@ -42,12 +59,24 @@ export default createStore({
     setIsLoading(state, status) {
       state.isLoading = status
     },
-    setToken(state, token) {
-      state.token = token
+
+    setAccess(state, access) {
+      state.access = access
+    
+
+  //  setToken(state, token) {
+    //  state.accessToken = null
+    //  state.refreshToken = null
+      
+    //  state.token = token
       state.isAuthenticated = true
     },
+    setRefresh(state, refresh) {
+      state.refresh = refresh
+    },
+    
     removeToken(state) {
-      state.token = ''
+      state.access = ''
       state.isAuthenticated = false
     },
     clearCart(state) {

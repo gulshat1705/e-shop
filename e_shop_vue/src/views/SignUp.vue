@@ -4,9 +4,11 @@
         <form @submit.prevent="submitForm">
             <div class="text-center w-1/2 mx-auto">
                 <div class="my-5">
-                    <input type="text" class="w-full border-b border-solid border-dark py-1 px-3 ml-5" v-model="username" placeholder="Username">
+                    <input type="text" class="w-full border-b border-solid border-dark py-1 px-3 ml-5" v-model="email" placeholder="Email">
                 </div>
-
+                <div class="my-5">
+                    <input type="text" class="w-full border-b border-solid border-dark py-1 px-3 ml-5" v-model="username" placeholder="Username">
+                </div>                
                 <div class="my-5">
                     <input type="password" class="w-full border-b border-solid border-dark py-1 px-3 ml-5" v-model="password" placeholder="Password">
                 </div>
@@ -47,6 +49,7 @@ export default {
     },
     data() {
         return {
+            email: '',
             username: '',
             password: '',
             password2: '',
@@ -59,6 +62,9 @@ export default {
     methods: {
         submitForm() {
             this.errors = []
+            if (this.email === '') {
+                this.errors.push('The email is missing')
+            }
 
             if (this.username === '') {
                 this.errors.push('The username is missing')
@@ -74,15 +80,17 @@ export default {
 
             if (!this.errors.length) {
                 const formData = {
+                    email: this.email,
                     username: this.username,
-                    password: this.password
+                    password: this.password,
+                    re_password: this.password2
                 }
 
                 axios
                     .post('api/v1/users/', formData)
                     .then(response => {
                         toast({
-                            message: 'Account created, please log in!',
+                            message: 'Account created, please log in by email!',
                             type: 'is-success',
                             dismissible: true,
                             pauseOnHover: true,

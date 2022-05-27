@@ -1,5 +1,3 @@
-from itertools import product
-from pyexpat import model
 from rest_framework import serializers
 from .models import Order, OrderItem
 from product.serializers import ProductSerializer
