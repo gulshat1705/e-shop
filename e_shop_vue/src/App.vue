@@ -3,6 +3,11 @@
 
   <section class="container header-wrap max-w-7xl mx-auto py-8">
 
+    <div>
+      <h3 v-if="user">Hi, {{ user.name }}</h3>
+      <h3 v-if="!user">You are not logged in </h3>
+    </div>
+
     <div class="search items-center relative mx-auto">
       <form method="get" action="/search">
         <div class="control ">
@@ -31,10 +36,24 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer' 
 
+import axios from 'axios'
+
 export default {
   components: {
     Navbar,
     Footer,
+  },
+  data() {
+    return {
+      user: null
+    }
+  },
+  async created() {
+    const response = await axios.get('user', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+    })
   }
 }
 </script>

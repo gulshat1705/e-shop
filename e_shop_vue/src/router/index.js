@@ -9,7 +9,9 @@ import Cart from '@/views/Cart'
 import Checkout from '@/views/Checkout'
 import LogIn from '@/views/LogIn'
 import MyAccount from '@/views/MyAccount'
+import ChangePass from '@/views/ChangePass'
 import Success from '@/views/Success'
+import ForgotPass from '@/views/ForgotPass'
 import store from '@/store'
  
 const routes = [
@@ -39,6 +41,11 @@ const routes = [
     component: LogIn
   },
   {
+    path: '/forgot-passw',
+    name: 'forgot-passw',
+    component: ForgotPass
+  },
+  {
     path: '/my-account',
     name: 'my-account',
     component: MyAccount,
@@ -50,6 +57,14 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: Cart
+  },
+  {
+    path: '/change-password',
+    name: 'change-password',
+    component: ChangePass,
+    meta: {
+      requireLogin: true
+    }
   },
   {
   path: '/cart/checkout',

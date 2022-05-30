@@ -30,9 +30,11 @@
                         <input type="text" class="" v-model="userForm.address">
                     </div>                    
                 </div>
+                
                 <button  type="submit" class="block uppercase text-white bg-green py-2 px-5 w-80 mx-auto my-2 rounded">save changes</button>
-
+                <router-link to="/change-password" class="block pb-2 text-dark underline decoration-solid decoration-green font-bold text-center">Change password</router-link>
             </form>
+            
         </div>
         
     </div>
@@ -108,6 +110,13 @@ export default {
                     this.userForm = response.data
                 })
         },
+        async created() {
+            const response = await axios.get('user', {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('access')
+            }
+            })
+        },
         async getMyOrders() {
             this.$store.commit('setIsLoading', true)
 
@@ -142,6 +151,7 @@ export default {
     padding: 3px 10px;
     outline: none;
     background: rgb(203 213 225);
+    border: 1px solid rgb(203 213 225);
     border-radius: 3px;
     margin-bottom: 5px;
     transition: .3s;

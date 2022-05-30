@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('djoser.urls')),        # auth
     path('api/v1/login/', TokenObtainPairView.as_view()),
+    path('api/v1/refresh/', TokenRefreshView.as_view()),  # To get a new access token, you should use the refresh token
     path('api/v1/', include('djoser.urls.authtoken')),      # auth
     path('api/v1/', include('djoser.urls.jwt')),
     path('api/v1/', include('profiles.urls')),

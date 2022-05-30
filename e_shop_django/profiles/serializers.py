@@ -83,3 +83,32 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 
         return instance 
                
+
+
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+
+    user = serializers.ReadOnlyField(source='user.id')
+    id = serializers.IntegerField(source='pk', read_only=True)
+    username = serializers.CharField(source='user.username', read_only=True)
+    email = serializers.CharField(source='user.email')
+    phone = serializers.CharField(source='user.phone')
+
+
+    class Meta:
+        model = Profile
+        depth = 1
+        fields = ('user', 'id', 'username', 'email', 'name', 'phone', 'address')
+
+
+    def update(self, instance, validated_data):
+        # retrieve the User
+        user_data = validated_data.pop('user', None)
+        for attr, value in user_data.items():
+            setattr(instance.user, attr, value)
+
+        # retrieve Profile
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.user.save()
+        instance.save()
+        return instance               

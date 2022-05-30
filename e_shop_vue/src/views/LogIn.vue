@@ -15,10 +15,13 @@
             <div class="" v-if="errors.length">
                 <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
             </div> 
-
-            <div class="my-5">
+            <div class="my-2">
                 <green-btn>log in</green-btn>
+                <p class="m-0">
+                    <router-link to="/forgot-passw" class="text-green text-sm">Forgot password?</router-link>
+                </p>
             </div> 
+
             <hr>
             <p class="py-5">Or 
                 <router-link to="/sign-up" class="text-green">click here</router-link>

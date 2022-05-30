@@ -11,4 +11,6 @@ import './assets/tailwind.css'
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
+//axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access')
+
 createApp(App).use(store).use(router, axios).mount('#app')
